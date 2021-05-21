@@ -9,7 +9,7 @@ body {
 
 body {
   min-height: 100vh;
-  background-color: #e5e5e5;
+  background-color: #b3e5fc !important;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -81,11 +81,9 @@ body {
 .main-wrapper .example-full-width,
 .main-wrapper .btn-block {
   width: 100%;
+
 }
 
-.btn-inline {
-  width:50%;
-}
 
 .main-wrapper mat-card-header {
   text-align: center;
@@ -107,6 +105,7 @@ body {
   border: 1px solid currentColor;
   line-height: 54px;
   background: #FFF7FA;
+  margin: 5px;
 }
 
 .main-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
