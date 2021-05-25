@@ -1,53 +1,72 @@
-import {Injectable} from '@angular/core';
-import {AngularFireAuth} from "@angular/fire/auth";
-import {Router} from "@angular/router";
-import firebase from "firebase";
-import auth = firebase.auth;
+import {Injectable, NgZone} from '@angular/core';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {Router} from '@angular/router';
+import firebase from 'firebase';
 import {User} from "./user";
+import {ToastrService} from "ngx-toastr";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
-  isLoggedIn = false;
   user: User
+  userData: any
 
-  constructor(private firebaseAuth: AngularFireAuth,
+  constructor(private fireAuth: AngularFireAuth,
               private router: Router) {
-    this.firebaseAuth.authState.subscribe((userRef) => {
-      this.user = userRef;
+    this.fireAuth.authState.subscribe((user) => {
+      if (user) {
+        this.user = user
+        localStorage.setItem('user', JSON.stringify(this.user))
+      } else {
+        localStorage.setItem('user', null)
+      }
     })
-
-
   }
 
-  async signIn(email: string, password: string) {
-    await this.firebaseAuth.signInWithEmailAndPassword(email, password)
-      .then(res => {
-        this.isLoggedIn = true
-        localStorage.setItem('user', JSON.stringify(res.user))
-      })
+
+
+
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user !== null;
   }
 
-  async signUp(email: string, password: string) {
-    await this.firebaseAuth.createUserWithEmailAndPassword(email, password)
+
+  signIn(email: string, password: string) {
+    return this.fireAuth.signInWithEmailAndPassword(email, password).then((result) => {
+      console.log('nice it worked', result)
+      this.router.navigate(['/dashboard']);
+    }).catch((error) => {
+      console.log('sadadsas', error)
+    })
+  }
+
+  signUp(email: string, password: string) {
+    return this.fireAuth.createUserWithEmailAndPassword(email, password)
       .then(res => {
-        this.isLoggedIn = true
-        localStorage.setItem('user', JSON.stringify(res.user))
+        console.log('nice it worked', res)
+        this.router.navigate(['/login'])
+      }).catch(error => {
+        console.log('something went wrong', error)
       })
   }
 
   logOut() {
-    this.firebaseAuth.signOut();
-    localStorage.removeItem('user');
+    return this.fireAuth.signOut().then(() => {
+      this.router.navigate(['/'])
+    })
   }
 
 
-  async signInWithGoogle() {
-    await this.firebaseAuth.signInWithPopup(new auth.GoogleAuthProvider()).then(res => {
-      this.isLoggedIn = true;
-      localStorage.setItem('user', JSON.stringify(res.user))
-    },()=>{
+  signInWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    this.fireAuth.signInWithPopup(provider).then((result) => {
+      console.log('dasdasdasd', result)
+      this.router.navigate(['/dashboard'])
+    }).catch(error => {
+      console.log('something went wrong', error.message)
     })
   }
 

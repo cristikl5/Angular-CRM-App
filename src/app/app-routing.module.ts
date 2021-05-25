@@ -3,11 +3,19 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./views/login/login.component";
 import {RegisterComponent} from "./views/register/register.component";
 import {DashboardTableComponent} from "./views/dashboard-table/dashboard-table.component";
-import {AuthGuard} from "./guard/auth.guard";
+import {AngularFireAuthGuard, redirectUnauthorizedTo} from "@angular/fire/auth-guard";
+import {NotFoundComponent} from "./views/not-found/not-found.component";
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
     component: LoginComponent
   },
   {
@@ -17,13 +25,26 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardTableComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToLogin}
+  },
+  {
+    path: '404',
+    component: NotFoundComponent
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: '/404'
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    AngularFireAuthGuard
+  ]
 })
 export class AppRoutingModule {
 }

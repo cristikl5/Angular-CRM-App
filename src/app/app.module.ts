@@ -13,6 +13,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {environment} from "../environments/environment";
+import { ToastrModule } from 'ngx-toastr';
+import { NotFoundComponent } from './views/not-found/not-found.component';
 
 
 
@@ -21,7 +23,8 @@ import {environment} from "../environments/environment";
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardTableComponent
+    DashboardTableComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import {environment} from "../environments/environment";
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

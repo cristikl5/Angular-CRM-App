@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FirebaseService} from "../../shared/services/firebase.service";
 
 @Component({
   selector: 'app-dashboard-table',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardTableComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: FirebaseService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  logOut() {
+    this.authService.logOut();
   }
 
 }
