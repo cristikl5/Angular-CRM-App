@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/auth";
 import {Router} from "@angular/router";
 import {ApiService} from "../../services/api.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {Sort} from "@angular/material/sort";
+
 
 @Component({
   selector: 'app-dashboard-table',
@@ -11,20 +13,23 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class DashboardTableComponent implements OnInit {
   users: Users[];
-  displayColumns: string[] = ['Name','Username','Email','Address'];
+  displayColumns: string[] = ['Nr', 'Name', 'Username', 'Email', 'City'];
 
   constructor(private authService: AngularFireAuth,
               private router: Router,
               private usersService: ApiService) {
   }
 
+
   ngOnInit(): void {
-    this.getUsers();
+    this.getUsers()
   }
+
 
   getUsers() {
     this.usersService.getUsers().subscribe((data: any) => {
       this.users = data;
+      console.log(data)
     }, (error: HttpErrorResponse) => {
       console.log(error)
     })
