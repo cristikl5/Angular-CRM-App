@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {AngularFireAuth} from '@angular/fire/auth';
-import firebase from 'firebase/app';
-import {FirebaseService} from "../../shared/services/firebase.service";
+import firebase from "firebase";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {ToastrService} from "ngx-toastr";
+
 
 
 @Component({
@@ -11,24 +13,38 @@ import {FirebaseService} from "../../shared/services/firebase.service";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
 
-  constructor(private authService: FirebaseService) {
+  constructor(public authService: AngularFireAuth,
+              private router: Router,
+              public fb: FormBuilder,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
-
+    this.loginForm = this.fb.group({
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
+    })
   }
 
-  onLogin(email, password) {
-    this.authService.signIn(email, password);
+  signIn() {
+    const {email, password} = this.loginForm.value
+    this.authService.signInWithEmailAndPassword(email, password).then((success) => {
+      this.router.navigate(['/dashboard']);
+      this.toastr.success('Hello there!', '', {timeOut: 3000})
+    }).catch(() => {
+      this.toastr.error('Something went wrong','Oops!',{timeOut:3000})
+    })
   }
 
 
-  onSignUp(email, password) {
-    this.authService.signUp(email, password)
-  }
-
-  googleLogin() {
-    this.authService.signInWithGoogle();
+  signInWithGoogle() {
+    this.authService.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((user) => {
+      this.router.navigate(['dashboard'])
+      this.toastr.success('','Hi there!',{timeOut:3000})
+    }).catch(()=>{
+      this.toastr.error('Something went wrong','Oops!',{timeOut:3000})
+    })
   }
 }

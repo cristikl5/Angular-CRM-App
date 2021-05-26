@@ -3,20 +3,20 @@
     <mat-card-header>
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
-    <form class="example-form">
+    <form class="example-form" [formGroup]="registerForm">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" #emailElement>
+          <input matInput placeholder="Email" formControlName="email" type="text">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" #passwordElement type="password">
+          <input matInput placeholder="Password" type="password" formControlName="password">
         </mat-form-field>
       </mat-card-content>
-      <button mat-stroked-button color="accent" class="btn-block"
-              (click)="createUser(emailElement.value,passwordElement.value)">Register
+      <button mat-stroked-button color="accent" class="btn-block" (click)="createUser()"
+      >Register
       </button>
       <mat-card-actions>
-       <button mat-button class="haveAccountClass" color="accent" routerLink="/login">Have an account? Login</button>
+        <button mat-button class="haveAccountClass" color="accent" routerLink="/login" >Have an account? Login</button>
       </mat-card-actions>
     </form>
   </mat-card>

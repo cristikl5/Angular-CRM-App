@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "crud-app5": {
+      "hosting": {
+        "admin-ui": [
+          "crud-app5"
+        ]
+      }
+    }
+  }
+}

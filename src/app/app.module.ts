@@ -10,11 +10,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularMaterialModule} from "./angular-material/angular-material.module";
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AngularFireModule} from '@angular/fire';
+import {AngularFireModule} from "@angular/fire";
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {environment} from "../environments/environment";
-import { ToastrModule } from 'ngx-toastr';
-import { NotFoundComponent } from './views/not-found/not-found.component';
+import {NotFoundComponent} from './views/not-found/not-found.component';
+import {ToastrModule} from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -36,7 +38,8 @@ import { NotFoundComponent } from './views/not-found/not-found.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
