@@ -16,6 +16,7 @@ import {environment} from "../environments/environment";
 import {NotFoundComponent} from './views/not-found/not-found.component';
 import {ToastrModule} from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -39,7 +40,8 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent],
