@@ -17,6 +17,8 @@ import {NotFoundComponent} from './views/not-found/not-found.component';
 import {ToastrModule} from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { DeleteUserDialogComponent } from './views/dialogs/delete-user-dialog/delete-user-dialog.component';
+import { AddUserDialogComponent } from './views/dialogs/add-user-dialog/add-user-dialog.component';
 
 
 
@@ -27,7 +29,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     LoginComponent,
     RegisterComponent,
     DashboardTableComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    DeleteUserDialogComponent,
+    AddUserDialogComponent
   ],
   imports: [
     BrowserModule,

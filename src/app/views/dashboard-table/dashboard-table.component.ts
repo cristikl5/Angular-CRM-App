@@ -4,9 +4,11 @@ import {Router} from "@angular/router";
 import {ApiService} from "../../services/api.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSort, Sort} from "@angular/material/sort";
-import {MatTableDataSource} from "@angular/material/table";
 import {ToastrService} from "ngx-toastr";
 import {MatPaginator} from "@angular/material/paginator";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {DeleteUserDialogComponent} from "../dialogs/delete-user-dialog/delete-user-dialog.component";
+import {AddUserDialogComponent} from "../dialogs/add-user-dialog/add-user-dialog.component";
 
 
 @Component({
@@ -20,11 +22,14 @@ export class DashboardTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   page = 0;
+  id: number;
+  name: string;
 
   constructor(private authService: AngularFireAuth,
               private router: Router,
               private usersService: ApiService,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              public dialog: MatDialog) {
   }
 
 
@@ -38,23 +43,40 @@ export class DashboardTableComponent implements OnInit {
       this.users = data;
       console.log(data)
     }, (error: HttpErrorResponse) => {
-      console.log(error)
+      console.log(error.message)
       this.toastr.error('Something went wrong', 'Oops!', {timeOut: 3000})
     })
   }
 
   deleteUser(userId) {
-    this.usersService.deleteUser({userId: userId}).subscribe(() => {
-      this.users.filter(item => {
-        if (item.id !== userId) {
-          return item;
+    const dialogRef = this.dialog.open(DeleteUserDialogComponent, {
+      width: '250px',
+      data: {userId},
+    })
+    dialogRef.afterClosed().subscribe((data) => {
+      this.users = this.users.filter((data) => {
+        if (data.id !== userId) {
+          return data;
         }
       })
-      this.router.navigate(['/dashboard'])
-      this.toastr.success('User Deleted', 'Success!', {timeOut: 3000})
     }, (error: HttpErrorResponse) => {
-      console.log(error)
+      console.log(error);
     })
+  }
+
+  addUser() {
+    const dialogRef = this.dialog.open(AddUserDialogComponent,{
+      width:'500px',
+      height:'500px'
+    })
+    dialogRef.afterClosed().subscribe((data)=>{
+
+    })
+  }
+
+
+  editUser() {
+
   }
 
 
@@ -62,6 +84,7 @@ export class DashboardTableComponent implements OnInit {
     this.authService.signOut()
       .then(() => this.router.navigate(['/login']));
   }
+
 
 }
 
