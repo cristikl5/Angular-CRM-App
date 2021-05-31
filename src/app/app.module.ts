@@ -19,6 +19,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {DeleteUserDialogComponent} from './views/dialogs/delete-user-dialog/delete-user-dialog.component';
 import {AddUserDialogComponent} from './views/dialogs/add-user-dialog/add-user-dialog.component';
+import { LogoutDialogComponent } from './views/dialogs/logout-dialog/logout-dialog.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {AddUserDialogComponent} from './views/dialogs/add-user-dialog/add-user-d
     NotFoundComponent,
     DeleteUserDialogComponent,
     AddUserDialogComponent,
+    LogoutDialogComponent,
   ],
   imports: [
     BrowserModule,

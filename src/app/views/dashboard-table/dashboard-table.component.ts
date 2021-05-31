@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/auth";
 import {Router} from "@angular/router";
 import {ApiService} from "../../services/api.service";
@@ -8,7 +8,7 @@ import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {AddUserDialogComponent} from "../dialogs/add-user-dialog/add-user-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteUserDialogComponent} from "../dialogs/delete-user-dialog/delete-user-dialog.component";
-import {MatTableDataSource} from "@angular/material/table";
+import {LogoutDialogComponent} from "../dialogs/logout-dialog/logout-dialog.component";
 
 
 @Component({
@@ -65,8 +65,7 @@ export class DashboardTableComponent implements OnInit {
   }
 
   addUser() {
-    const dialogRef = this.dialog.open(AddUserDialogComponent, {
-    })
+    const dialogRef = this.dialog.open(AddUserDialogComponent, {})
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
 
@@ -76,11 +75,16 @@ export class DashboardTableComponent implements OnInit {
 
 
   logOut() {
-    this.authService.signOut()
-      .then(() => this.router.navigate(['/login']));
+    const dialogRef = this.dialog.open(LogoutDialogComponent, {
+      disableClose: true
+    })
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.authService.signOut()
+          .then(() => this.router.navigate(['/login']));
+      }
+    })
   }
-
-
 }
 
 
