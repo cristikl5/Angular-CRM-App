@@ -1,27 +1,43 @@
+
 table {
   width: 70%;
   margin: 20px auto;
-  display: table;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
 
+
+
+.pagination {
+  display: grid;
+  place-items: center;
+}
 
 .logOutButton {
   float: right;
   margin: 10px;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+  font-size: 20px;
+  color: #fefefe;
+  background-color: #2199e8 ;
 }
 
 .addUserButton {
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
   margin: 10px;
   font-size: 20px;
+  color: #fefefe;
+  background-color: #2199e8 ;
 }
 
 
-.mat-paginator {
-  position: relative;
-  top: 200px;
-  right: 345px;
+
+pagination-controls {
+  background-color: #ffffff;
+  margin: 20px auto;
+  display: grid;
+  place-items: center;
+  width: 20%;
+  border-radius: 5px;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
 

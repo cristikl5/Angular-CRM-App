@@ -27,19 +27,7 @@ export class ApiService {
     return this.http.get(users, {params: params});
   }
 
-  addUser(...filtersOrSorts): Observable<Object> {
-    let params = new HttpParams();
-    if (filtersOrSorts && filtersOrSorts.length > 0) {
-      filtersOrSorts.map((filter) => {
-        const keyFilter = Object.keys(filter);
-        const valueFilter = filter[keyFilter[0]];
-        if (valueFilter !== null && valueFilter !== '') {
-          params = params.append(`${keyFilter}`, valueFilter);
-        }
-      });
-    }
-    return this.http.post(users, {params: params});
-  }
+
 
   deleteUser(...filtersOrSorts): Observable<Object> {
     let params = new HttpParams();
@@ -52,7 +40,7 @@ export class ApiService {
         }
       });
     }
-    return this.http.delete(users, {params: params});
+    return this.http.delete(users,{params});
   }
 
 

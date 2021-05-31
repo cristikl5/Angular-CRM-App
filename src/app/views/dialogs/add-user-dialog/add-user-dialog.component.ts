@@ -14,4 +14,12 @@ export class AddUserDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit() {
+    this.dialogRef.close(true)
+  }
+
+  onClose() {
+
+  }
+
 }

@@ -1,14 +1,14 @@
-<button (click)="logOut()" class="logOutButton">
+<button (click)="logOut()" class="logOutButton" mat-stroked-button >
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open"
        viewBox="0 0 16 16">
     <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
     <path
       d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
   </svg>
-  <div>Logout</div>
+  Logout
 </button>
 
-<button class="addUserButton">Add User
+<button class="addUserButton" mat-stroked-button  (click)="addUser()">Add User
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus"
        viewBox="0 0 16 16">
     <path
@@ -18,37 +18,37 @@
   </svg>
 </button>
 
-  <table mat-table [dataSource]="users | paginate : {itemsPerPage:5,currentPage:page}" class="mat-elevation-z8">
+  <table mat-table [dataSource]="users | paginate : {itemsPerPage:5,currentPage:page}">
 
     <ng-container matColumnDef="Nr">
       <th mat-header-cell *matHeaderCellDef>Nr.</th>
-      <td mat-cell *matCellDef="let element">{{element.id + '.'}} </td>
+      <td mat-cell *matCellDef="let user">{{user.id + '.'}}</td>
     </ng-container>
 
     <ng-container matColumnDef="Name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let element">{{element.name}} </td>
+      <td mat-cell *matCellDef="let user">{{user.name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Username">
       <th mat-header-cell *matHeaderCellDef>Username</th>
-      <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+      <td mat-cell *matCellDef="let user"> {{user.username}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Email">
       <th mat-header-cell *matHeaderCellDef>Email</th>
-      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      <td mat-cell *matCellDef="let user"> {{user.email}} </td>
     </ng-container>
 
     <ng-container matColumnDef="City">
       <th mat-header-cell *matHeaderCellDef>City</th>
-      <td mat-cell *matCellDef="let element">{{element.address.city}} </td>
+      <td mat-cell *matCellDef="let user">{{user.address.city}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Actions">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button mat-button (click)="deleteUser(element.id)">Delete
+        <button mat-button (click)="deleteUser(element.id)" color="warn">Delete
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
                viewBox="0 0 16 16">
             <path
@@ -64,8 +64,8 @@
     <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
 
   </table>
-  <pagination-controls (pageChange)="page=$event" class="mat-paginator" responsive="true"></pagination-controls>
 
+<pagination-controls (pageChange)="page = $event" responsive="true" ></pagination-controls>
 
 
 

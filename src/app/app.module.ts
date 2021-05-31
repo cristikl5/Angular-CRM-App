@@ -15,12 +15,10 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {environment} from "../environments/environment";
 import {NotFoundComponent} from './views/not-found/not-found.component';
 import {ToastrModule} from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { DeleteUserDialogComponent } from './views/dialogs/delete-user-dialog/delete-user-dialog.component';
-import { AddUserDialogComponent } from './views/dialogs/add-user-dialog/add-user-dialog.component';
-
-
+import {DeleteUserDialogComponent} from './views/dialogs/delete-user-dialog/delete-user-dialog.component';
+import {AddUserDialogComponent} from './views/dialogs/add-user-dialog/add-user-dialog.component';
 
 
 @NgModule({
@@ -31,7 +29,7 @@ import { AddUserDialogComponent } from './views/dialogs/add-user-dialog/add-user
     DashboardTableComponent,
     NotFoundComponent,
     DeleteUserDialogComponent,
-    AddUserDialogComponent
+    AddUserDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +47,8 @@ import { AddUserDialogComponent } from './views/dialogs/add-user-dialog/add-user
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  entryComponents: [AddUserDialogComponent, DeleteUserDialogComponent]
 })
 export class AppModule {
 }

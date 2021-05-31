@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      email: new FormControl('', [Validators.email,Validators.required]),
+      password: new FormControl('', [Validators.required,Validators.minLength(6)])
     })
   }
 
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   signInWithGoogle() {
     this.authService.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((user) => {
-      this.router.navigate(['dashboard'])
+      this.router.navigate(['/dashboard'])
       this.toastr.success('','Hi there!',{timeOut:3000})
     }).catch(()=>{
       this.toastr.error('Something went wrong','Oops!',{timeOut:3000})

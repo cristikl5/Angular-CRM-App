@@ -1,1 +1,28 @@
-mat
+<form>
+  <mat-form-field>
+  <mat-label>Name</mat-label>
+  <input matInput placeholder="ex:Chris Anderson">
+  </mat-form-field>
+  <p>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="ex:Ryan123">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="ex:myemail@gmail.com">
+    </mat-form-field>
+  </p>
+
+  <mat-form-field>
+    <mat-label>City</mat-label>
+    <input matInput placeholder="ex:New York">
+  </mat-form-field>
+
+</form>
+<button mat-stroked-button class="addUserDialog" (click)="onSubmit()">Add user</button>
+<button mat-button mat-dialog-close>Close</button>
+
