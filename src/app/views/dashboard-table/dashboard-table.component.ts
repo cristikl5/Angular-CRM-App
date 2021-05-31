@@ -22,6 +22,7 @@ export class DashboardTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   page = 0;
   userId: number
+  isLoading = false;
 
   constructor(private authService: AngularFireAuth,
               private router: Router,
@@ -37,6 +38,7 @@ export class DashboardTableComponent implements OnInit {
 
 
   getUsers() {
+    this.isLoading = true;
     this.usersService.getUsers().subscribe((data: any) => {
       this.users = data;
     }, (error: HttpErrorResponse) => {
@@ -46,6 +48,7 @@ export class DashboardTableComponent implements OnInit {
   }
 
   deleteUser(userId) {
+    this.isLoading = true;
     const dialogRef = this.dialog.open(DeleteUserDialogComponent, {
       disableClose: true,
       autoFocus: true,
@@ -54,6 +57,7 @@ export class DashboardTableComponent implements OnInit {
       }
     })
     dialogRef.afterClosed().subscribe((result) => {
+      this.isLoading = false;
       if (result) {
         this.users = this.users.filter((item) => {
           if (item.id !== userId) {
@@ -75,10 +79,12 @@ export class DashboardTableComponent implements OnInit {
 
 
   logOut() {
+    this.isLoading = true;
     const dialogRef = this.dialog.open(LogoutDialogComponent, {
       disableClose: true
     })
     dialogRef.afterClosed().subscribe((result) => {
+      this.isLoading = false
       if (result) {
         this.authService.signOut()
           .then(() => this.router.navigate(['/login']));
