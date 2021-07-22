@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
+import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-logout-dialog',
@@ -14,7 +14,7 @@ export class LogoutDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  confirm() {
-    this.matDialogRef.close(true)
+  confirm(): void {
+    this.matDialogRef.close(true);
   }
 }

@@ -1,4 +1,4 @@
-<button (click)="logOut()" class="logOutButton" mat-stroked-button >
+<button (click)="logOut()" class="logOutButton" mat-stroked-button>
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open"
        viewBox="0 0 16 16">
     <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
@@ -8,7 +8,7 @@
   Logout
 </button>
 
-<button class="addUserButton" mat-stroked-button  (click)="addUser()">Add User
+<button class="addUserButton" mat-stroked-button (click)="addUser()">Add User
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus"
        viewBox="0 0 16 16">
     <path
@@ -18,54 +18,54 @@
   </svg>
 </button>
 
-  <table mat-table [dataSource]="users | paginate : {itemsPerPage:5,currentPage:page}">
+<table mat-table [dataSource]="users | paginate : {itemsPerPage:5,currentPage:page}">
 
-    <ng-container matColumnDef="Nr">
-      <th mat-header-cell *matHeaderCellDef>Nr.</th>
-      <td mat-cell *matCellDef="let user">{{user.id + '.'}}</td>
-    </ng-container>
+  <ng-container matColumnDef="Nr">
+    <th mat-header-cell *matHeaderCellDef>Nr.</th>
+    <td mat-cell *matCellDef="let user">{{user.id + '.'}}</td>
+  </ng-container>
 
-    <ng-container matColumnDef="Name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let user">{{user.name}} </td>
-    </ng-container>
+  <ng-container matColumnDef="Name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let user">{{user.name}} </td>
+  </ng-container>
 
-    <ng-container matColumnDef="Username">
-      <th mat-header-cell *matHeaderCellDef>Username</th>
-      <td mat-cell *matCellDef="let user"> {{user.username}} </td>
-    </ng-container>
+  <ng-container matColumnDef="Username">
+    <th mat-header-cell *matHeaderCellDef>Username</th>
+    <td mat-cell *matCellDef="let user"> {{user.username}} </td>
+  </ng-container>
 
-    <ng-container matColumnDef="Email">
-      <th mat-header-cell *matHeaderCellDef>Email</th>
-      <td mat-cell *matCellDef="let user"> {{user.email}} </td>
-    </ng-container>
+  <ng-container matColumnDef="Email">
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+  </ng-container>
 
-    <ng-container matColumnDef="City">
-      <th mat-header-cell *matHeaderCellDef>City</th>
-      <td mat-cell *matCellDef="let user">{{user.address.city}} </td>
-    </ng-container>
+  <ng-container matColumnDef="City">
+    <th mat-header-cell *matHeaderCellDef>City</th>
+    <td mat-cell *matCellDef="let user">{{user.address.city}} </td>
+  </ng-container>
 
-    <ng-container matColumnDef="Actions">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <button mat-button (click)="deleteUser(element.id)" color="warn">Delete
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
-               viewBox="0 0 16 16">
-            <path
-              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-            <path fill-rule="evenodd"
-                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-          </svg>
-        </button>
-      </mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="Actions">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-button (click)="deleteUser(element.id)" color="warn">Delete
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+             viewBox="0 0 16 16">
+          <path
+            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+          <path fill-rule="evenodd"
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+        </svg>
+      </button>
+    </mat-cell>
+  </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+  <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
 
-  </table>
+</table>
 
-<pagination-controls (pageChange)="page = $event" responsive="true" ></pagination-controls>
+<pagination-controls (pageChange)="page = $event" responsive="true"></pagination-controls>
 
 
 

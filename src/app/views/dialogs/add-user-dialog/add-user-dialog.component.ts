@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
+import {MatDialogRef} from '@angular/material/dialog';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ApiService} from '../../../services/api.service';
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-user-dialog',
@@ -7,19 +11,34 @@ import {MatDialogRef} from "@angular/material/dialog";
   styleUrls: ['./add-user-dialog.component.scss']
 })
 export class AddUserDialogComponent implements OnInit {
+  addForm: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<AddUserDialogComponent>) {
+  constructor(public dialogRef: MatDialogRef<AddUserDialogComponent>,
+              private formBuilder: FormBuilder,
+              private apiService: ApiService,
+              private router: Router,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    this.dialogRef.close(true)
+  formGroup(): void {
+    this.addForm = this.formBuilder.group({
+      name: new FormControl('', Validators.required),
+      username: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      city: new FormControl('', Validators.required)
+    });
   }
 
-  onClose() {
+  addUser(): void {
+    this.apiService.createUser(this.addForm.value).subscribe((data) => {
 
+    });
   }
 
+  onSubmit(): void {
+    this.dialogRef.close(true);
+  }
 }

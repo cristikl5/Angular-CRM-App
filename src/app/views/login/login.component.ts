@@ -6,7 +6,6 @@ import {AngularFireAuth} from "@angular/fire/auth";
 import {ToastrService} from "ngx-toastr";
 
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,8 +22,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: new FormControl('', [Validators.email,Validators.required]),
-      password: new FormControl('', [Validators.required,Validators.minLength(6)])
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
     })
   }
 
@@ -34,7 +33,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/dashboard']);
       this.toastr.success('Hello there!', '', {timeOut: 3000})
     }).catch(() => {
-      this.toastr.error('Something went wrong','Oops!',{timeOut:3000})
+      this.toastr.error('Something went wrong', 'Oops!', {timeOut: 3000})
     })
   }
 
@@ -42,9 +41,9 @@ export class LoginComponent implements OnInit {
   signInWithGoogle() {
     this.authService.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((user) => {
       this.router.navigate(['/dashboard'])
-      this.toastr.success('','Hi there!',{timeOut:3000})
-    }).catch(()=>{
-      this.toastr.error('Something went wrong','Oops!',{timeOut:3000})
+      this.toastr.success('', 'Hi there!', {timeOut: 3000})
+    }).catch(() => {
+      this.toastr.error('Something went wrong', 'Oops!', {timeOut: 3000})
     })
   }
 }

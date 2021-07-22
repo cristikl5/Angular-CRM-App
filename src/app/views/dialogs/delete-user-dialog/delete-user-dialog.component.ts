@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {ApiService} from "../../../services/api.service";
-import {IUsers} from "../../dashboard-table/dashboard-table.component";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {ApiService} from '../../../services/api.service';
+import {IUsers} from '../../dashboard-table/dashboard-table.component';
 
 @Component({
   selector: 'app-delete-user-dialog',
@@ -19,8 +19,8 @@ export class DeleteUserDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  confirm() {
-    this.dialogRef.close(true)
+  confirm(): void {
+    this.dialogRef.close(true);
   }
 
 }

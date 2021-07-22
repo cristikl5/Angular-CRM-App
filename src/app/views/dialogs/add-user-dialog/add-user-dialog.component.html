@@ -1,25 +1,21 @@
-<form>
+<form [formGroup]="addForm">
   <mat-form-field>
-  <mat-label>Name</mat-label>
-  <input matInput placeholder="ex:Chris Anderson">
+    <input matInput placeholder="Name" formControlName="name">
   </mat-form-field>
   <p>
     <mat-form-field>
-      <mat-label>Username</mat-label>
-      <input matInput placeholder="ex:Ryan123">
+      <input matInput placeholder="Username" formControlName="username">
     </mat-form-field>
   </p>
 
   <p>
     <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input matInput placeholder="ex:myemail@gmail.com">
+      <input matInput placeholder="Email" formControlName="email">
     </mat-form-field>
   </p>
 
   <mat-form-field>
-    <mat-label>City</mat-label>
-    <input matInput placeholder="ex:New York">
+    <input matInput placeholder="City" formControlName="city">
   </mat-form-field>
 
 </form>
